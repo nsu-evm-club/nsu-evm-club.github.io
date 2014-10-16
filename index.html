@@ -1,5 +1,5 @@
-<!DOCTYPE html><html><head><title>Клуб любителей ЭВМ - Главная</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="http://yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="/css/main.css"></head><body><div class="header"><div class="container"><div class="row"><div class="col-md-8 col-md-offset-2 col-sm-10"><div class="col-sm-2"><div class="menu"><div class="top"></div><ul class="nav nav-pills nav-stacked"><li><a href="/">Главная</a></li><li><a href="/materials/">Материалы</a></li></ul></div></div><div class="title col-sm-8"><p>Клуб</p><p>Любителей</p><p>ЭВМ</p></div></div></div></div><div class="down"></div></div><div class="container"><div class="col-md-7 col-md-offset-2 col-sm-9"><div class="panel panel-default"><div class="panel-heading"><h4>About</h4></div><div class="panel-body"><p>Вы находитесь на сайте элитного клуба любителей ЭВМ. Данный ресурс будет держать вас в курсе последних событий и сообщать о мероприятиях клуба. Здесь вы можете скачать материалы с клубных сходок, а также почитать интересные статьи. Для просмотра ресурсов перейдите в раздел <a href="/materials/">Материалы</a>.</p>
-</div></div><div class="panel panel-default"><div class="panel-heading"><h4>Организаторы</h4></div><div class="panel-body"><p><strong>Ефремов Иван Евгеньевич</strong><br />
+<!DOCTYPE html><html><head><title>Клуб любителей ЭВМ - Главная</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="http://yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="/css/main.css"></head><body><div class="header"><div class="container"><div class="row"><div class="col-md-8 col-md-offset-2 col-sm-10"><div class="col-sm-2"><div class="menu"><div class="top"></div><ul class="nav nav-pills nav-stacked"><li><a href="/">Главная</a></li><li><a href="/materials/">Материалы</a></li></ul></div></div><div class="title col-sm-8"><p>Клуб</p><p>Любителей</p><p>ЭВМ</p></div></div></div></div><div class="down"></div></div><div class="container"><div class="col-md-7 col-md-offset-2 col-sm-9"><div id="posts"><div class="post panel panel-default"><div class="panel-heading"><h4>About</h4></div><div class="panel-body"><p>Вы находитесь на сайте элитного клуба любителей ЭВМ. Данный ресурс будет держать вас в курсе последних событий и сообщать о мероприятиях клуба. Здесь вы можете скачать материалы с клубных сходок, а также почитать интересные статьи. Для просмотра ресурсов перейдите в раздел <a href="/materials/">Материалы</a>.</p>
+</div></div><div class="post panel panel-default"><div class="panel-heading"><h4>Организаторы</h4></div><div class="panel-body"><p><strong>Ефремов Иван Евгеньевич</strong><br />
 Преподаватель курсов: &quot;Программирование&quot;, &quot;Введение в ООП&quot;, &quot;ООП на Java&quot;.</p>
 <p><strong>Бежецков Дмитрий</strong><br />
 Студент 4-го курса ФИТ.</p>
@@ -11,7 +11,17 @@
 Студент 3-го курса ФИТ.</p>
 <p><strong>Поспелов Станислав</strong><br />
 Студент 3-го курса ФИТ.</p>
-</div></div></div><div class="col-md-2 col-sm-3 hidden-xs"><div id="socials"><div id="vk_groups"></div></div></div></div><script src="http://yastatic.net/jquery/1.11.1/jquery.min.js"></script><script src="http://yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script><script type="text/javascript">VK.Widgets.Group("vk_groups", {mode: 0, width: "200", height: "320", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 78714695);
+</div></div></div></div><div class="col-md-2 col-sm-3 hidden-xs"><div id="socials"><div id="vk_groups"></div></div></div></div><script type="text/javascript" src="http://yastatic.net/jquery/1.11.1/jquery.min.js"></script><script type="text/javascript" src="http://yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://vk.com/js/api/openapi.js?115"></script><script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script><script type="text/javascript">// VK group integration
+VK.Widgets.Group("vk_groups", {
+  mode: 0,
+  width: "200",
+  height: "320",
+  color1: 'FFFFFF',
+  color2: '2B587A',
+  color3:
+  '5B7FA6'
+}, 78714695);
+// Group intergation view
 $('#socials').affix({
   offset: {
     top: function () {
@@ -23,4 +33,17 @@ $('#socials').affix({
     }
     }
   }
-);</script></body></html>
+);
+// Make share buttons
+$('.post .share').each(function () {
+  var parents = $(this).parentsUntil('#posts');
+  var postParent = $(parents[parents.length - 1]);
+  var title = $(postParent.find('.panel-heading h4')).text();
+  var description = $(postParent.find('.panel-body')).find('p:lt(2)').text();
+  var image = window.location.host + '/images/project_logo.png';
+  $(this).html(VK.Share.button({
+    title: title,
+    description: description,
+    image: image
+  }, {type: "link", text: "Поделиться"}));
+});</script></body></html>
